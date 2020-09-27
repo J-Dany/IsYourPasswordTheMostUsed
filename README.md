@@ -4,9 +4,9 @@ Esegui questo programma, digita la tua password e vedi se è tra le più utilizz
 ## Compilare
 ```bash
 $ make
-   
+```
 
 ## Eseguire
-   bash
+```bash
 $ ./main
-   
+```
