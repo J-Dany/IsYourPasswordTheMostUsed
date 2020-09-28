@@ -12,7 +12,7 @@ int search(ListNodePtr *__head, FILE **__f, const char *__passwd)
 	char buff[MAX_BUF] = {0};
 
 	size_t i = 0;
-	while(!feof(*__f) && i < 2048)
+	while(!feof(*__f) && i < 64)
 	{
 		fscanf(*__f, "%s", buff);
 		fflush(stdin);
