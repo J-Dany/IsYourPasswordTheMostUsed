@@ -11,5 +11,5 @@ $ make
 $ ./main
 ```
 
-## Visualizza la pagina HTML!
+## Visualizza la pagina web!
 Non vuoi scaricare e compilare tutti i file? Nessun problema, clicca [qui](http://jdanya.altervista.org/password/).
