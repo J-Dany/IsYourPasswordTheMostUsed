@@ -12,4 +12,4 @@ $ ./main
 ```
 
 ## Visualizza la pagina HTML!
-Non vuoi scaricare e compilare tutti i file? Nessun problema, clicca (qui)[http://jdanya.altervista.org/password/].
+Non vuoi scaricare e compilare tutti i file? Nessun problema, clicca [qui](http://jdanya.altervista.org/password/).
