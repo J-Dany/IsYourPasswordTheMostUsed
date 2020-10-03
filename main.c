@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <time.h>
 #include "utilities.h"
+
+#define THREAD
 
 int main(int argc, char *arg[])
 {
@@ -17,6 +21,27 @@ int main(int argc, char *arg[])
 	fflush(stdout);
 	scanf("%256s", passwd);
 	fflush(stdin);
+
+	clock_t start = clock();
+
+	#ifdef SEQUENTIAL
+		while (!feof(fPtr))
+		{
+			char buff[MAX_BUF] = {0};
+			fscanf(fPtr, "%s", buff);
+			fflush(fPtr);
+
+			if (strcmp(buff, passwd) == 0)
+			{
+				printf("%s\n", "Password trovata!");
+				fflush(stdout);
+
+				break;
+			}
+		}
+	#endif
+	
+	#ifdef THREAD
 
 	struct args arguments = 
 	{
@@ -51,5 +76,10 @@ int main(int argc, char *arg[])
 fine:
 	pthread_mutex_destroy(&lock);
 	fclose(fPtr);
+	#endif 
+
+	printf("Execution time: %f\n", (double)(clock() - start) / CLOCKS_PER_SEC);
+	fflush(stdout);
+
 	return exit_error;
 }
