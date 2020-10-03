@@ -1,19 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "utilities.h"
 
-#define THREAD
+#define MAX_BUF 256
 
 int main(int argc, char *arg[])
 {
-	int exit_error = 0;
 	FILE *fPtr;
 	char passwd[MAX_BUF] = {0};
 
 	if ((fPtr = fopen("file_passwd.txt", "r")) == NULL)
 	{
-		return ERROR_OPENING_FILE;
+		return 1;
 	}
 
 	printf("%s", "Inserisci la password da cercare: ");
@@ -36,5 +34,5 @@ int main(int argc, char *arg[])
 		}
 	}
 
-	return exit_error;
+	return 0;
 }
