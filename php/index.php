@@ -15,6 +15,7 @@
                 break;
             }
         }
+        fclose($file);
     }
 ?>
 <!DOCTYPE html>
@@ -81,4 +82,4 @@
             </div>
         </footer>
     </body>
-</html>
+</html>
