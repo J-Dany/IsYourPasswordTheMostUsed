@@ -1,5 +1,5 @@
 main: main.o search.o
-	gcc main.o search.o -pthread -g -o main
+	gcc main.o search.o -g -o main
 
 main.o: main.c
 	gcc -c main.c
