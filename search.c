@@ -3,24 +3,25 @@
 #include <string.h>
 #include "utilities.h"
 
-void search(FILE **__f, const char *__passwd)
+void *search(void *__args)
 {
+    struct args arguments = *(struct args *)__args;
     pthread_mutex_lock(&lock);
 
     char buff[MAX_BUF] = {0};
 
-    while (!feof(*__f))
+    while (!feof(*arguments.file_passwd))
 	{
-		fscanf(*__f, "%s", buff);
-		fflush(*__f);
+		fscanf(*arguments.file_passwd, "%s", buff);
+		fflush(*arguments.file_passwd);
 
-		if (strcmp(buff, __passwd) == 0)
+		if (strcmp(buff, arguments.passwd) == 0)
 		{
 			printf("%s\n", "Password trovata!");
 			fflush(stdout);
 
             pthread_mutex_unlock(&lock);
-			return;
+			return NULL;
 		}
 	}
 
