@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "utilities.h"
 
 void search(FILE **__f, const char *__passwd)

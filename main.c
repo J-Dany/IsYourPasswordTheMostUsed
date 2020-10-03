@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include "utilities.h"
 
 int main(int argc, char *arg[])
@@ -23,7 +22,7 @@ int main(int argc, char *arg[])
 		printf("%s\n", "Error init mutex");
 		fflush(stdout);
 		fclose(fPtr);
-		
+
 		return ERROR_INIT_MUTEX;
 	}
 
