@@ -6,24 +6,27 @@
 int main(int argc, char *arg[])
 {
 	FILE *fPtr;
-	ListNodePtr lista_password = NULL;
-	char passwd_choosen[MAX_BUF] = {0};
-	
-	printf("%s", "Inserisci la password da cercare: ");
-	fflush(stdout);
-	scanf("%s", passwd_choosen);
-	while(getchar() != 10);
+	char passwd[MAX_BUF] = {0};
+	char buff[MAX_BUF] = {0};
 
 	if ((fPtr = fopen("file_passwd.txt", "r")) == NULL)
 	{
-		fprintf(stderr, "%s\n", "Error: file non found.");
-		return 1;
+		return EOF;
 	}
 
-	printf("%s\n", "Inizio la ricerca...");
-	search(&lista_password, &fPtr, passwd_choosen);
+	while (!feof(fPtr))
+	{
+		fscanf(fPtr, "%s", buff);
+		fflush(fPtr);
 
-	delete_list(&lista_password);
+		if (strcmp(buff, passwd) == 0)
+		{
+			printf("%s\n", "Password trovata!");
+			fflush(stdout);
+			break;
+		}
+	}
+
 	fclose(fPtr);
 	return 0;
 }
