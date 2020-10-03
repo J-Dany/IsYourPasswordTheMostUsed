@@ -32,5 +32,13 @@ void *search(void *__args)
 	}
     
     pthread_mutex_unlock(&lock);
+    int ret = 0;
+    pthread_t id = pthread_self();
+
+    if (pthread_equal(id, threads[0]) || pthread_equal(id, threads[1]))
+    {
+        pthread_exit(&ret);   
+    }
+
     return NULL;
 }
