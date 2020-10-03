@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <time.h>
 #include "utilities.h"
 
 #define THREAD
@@ -21,65 +20,21 @@ int main(int argc, char *arg[])
 	fflush(stdout);
 	scanf("%256s", passwd);
 	fflush(stdin);
-
-	clock_t start = clock();
-
-	#ifdef SEQUENTIAL
-		while (!feof(fPtr))
-		{
-			char buff[MAX_BUF] = {0};
-			fscanf(fPtr, "%s", buff);
-			fflush(fPtr);
-
-			if (strcmp(buff, passwd) == 0)
-			{
-				printf("%s\n", "Password trovata!");
-				fflush(stdout);
-
-				break;
-			}
-		}
-	#endif
 	
-	#ifdef THREAD
-
-	struct args arguments = 
+	while (!feof(fPtr))
 	{
-		.file_passwd = &fPtr,
-		.passwd = passwd
-	};
+		char buff[MAX_BUF] = {0};
+		fscanf(fPtr, "%s", buff);
+		fflush(fPtr);
 
-	if (pthread_mutex_init(&lock, NULL) != 0)
-	{
-		printf("%s\n", "Error init mutex");
-		fflush(stdout);
-
-		exit_error = ERROR_INIT_MUTEX;
-		goto fine;
-	}
-
-	for(char i = 0; i < 2; ++i)
-	{
-		if (pthread_create(&(threads[i]), NULL, &search, (void *)&arguments) != 0)
+		if (strcmp(buff, passwd) == 0)
 		{
-			printf("%s\n", "Error creating thread");
+			printf("%s\n", "Password trovata!");
 			fflush(stdout);
 
-			exit_error = ERROR_CREATING_THREAD;
-			goto fine;
+			break;
 		}
 	}
-
-	pthread_join(threads[0], NULL);
-	pthread_join(threads[1], NULL);
-
-fine:
-	pthread_mutex_destroy(&lock);
-	fclose(fPtr);
-	#endif 
-
-	printf("Execution time: %f\n", (double)(clock() - start) / CLOCKS_PER_SEC);
-	fflush(stdout);
 
 	return exit_error;
 }
