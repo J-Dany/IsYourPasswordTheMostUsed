@@ -14,6 +14,11 @@ int main(int argc, char *arg[])
 		return EOF;
 	}
 
+	printf("%s", "Inserisci la password da cercare: ");
+	fflush(stdout);
+	scanf("%256s", passwd);
+	fflush(stdin);
+
 	while (!feof(fPtr))
 	{
 		fscanf(fPtr, "%s", buff);
