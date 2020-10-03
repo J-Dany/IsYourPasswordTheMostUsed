@@ -7,11 +7,10 @@ int main(int argc, char *arg[])
 {
 	FILE *fPtr;
 	char passwd[MAX_BUF] = {0};
-	char buff[MAX_BUF] = {0};
 
 	if ((fPtr = fopen("file_passwd.txt", "r")) == NULL)
 	{
-		return EOF;
+		return ERROR_OPENING_FILE;
 	}
 
 	printf("%s", "Inserisci la password da cercare: ");
@@ -19,19 +18,16 @@ int main(int argc, char *arg[])
 	scanf("%256s", passwd);
 	fflush(stdin);
 
-	while (!feof(fPtr))
+	if (pthread_mutex_init(&lock, NULL) != 0)
 	{
-		fscanf(fPtr, "%s", buff);
-		fflush(fPtr);
-
-		if (strcmp(buff, passwd) == 0)
-		{
-			printf("%s\n", "Password trovata!");
-			fflush(stdout);
-			break;
-		}
+		printf("%s\n", "Error init mutex");
+		fflush(stdout);
+		fclose(fPtr);
+		
+		return ERROR_INIT_MUTEX;
 	}
 
+	pthread_mutex_destroy(&lock);
 	fclose(fPtr);
 	return 0;
 }
