@@ -23,7 +23,6 @@ int main(int argc, char *arg[])
 	{
 		char buff[MAX_BUF] = {0};
 		fscanf(fPtr, "%s", buff);
-		fflush(fPtr);
 
 		if (strcmp(buff, passwd) == 0)
 		{
