@@ -31,5 +31,6 @@ int main(int argc, char *arg[])
 		}
 	}
 
+	fclose(fPtr);
 	return 0;
 }
