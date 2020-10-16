@@ -15,9 +15,8 @@ int main(int argc, char *arg[])
 	}
 
 	printf("%s", "Inserisci la password da cercare: ");
-	fflush(stdout);
 	scanf("%256s", passwd);
-	fflush(stdin);
+	while(getchar() != 10);
 	
 	while (!feof(fPtr))
 	{
@@ -27,7 +26,6 @@ int main(int argc, char *arg[])
 		if (strcmp(buff, passwd) == 0)
 		{
 			printf("%s\n", "Password trovata!");
-			fflush(stdout);
 
 			break;
 		}
